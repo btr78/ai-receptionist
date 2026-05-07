@@ -185,7 +185,7 @@ export default function Dashboard() {
                         <span style={{ textTransform:'capitalize' }}>📺 {selected.channel}</span>
                       </div>
                     </div>
-                    <div style={{ display:'flex', gap:8' }}>
+                    <div style={{ display:'flex', gap:8}}>
                       {['new','contacted','booked','closed'].map(s => (
                         <button key={s} onClick={() => updateStatus(selected.id, s)}
                           style={{ padding:'6px 14px', borderRadius:8, border:'none', cursor:'pointer', fontSize:12, fontWeight:700, fontFamily:'inherit',
