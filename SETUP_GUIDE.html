@@ -1,0 +1,308 @@
+<!-- AI Receptionist — Complete Setup & Launch Guide -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Receptionist — Setup Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#0f172a; color:#e2e8f0; font-family:'Inter',sans-serif; padding:40px 20px; max-width:860px; margin:0 auto; }
+h1 { font-size:clamp(24px,4vw,38px); font-weight:900; letter-spacing:-1.5px; margin-bottom:6px; }
+.sub { font-size:14px; color:#64748b; margin-bottom:48px; font-family:'Space Mono',monospace; }
+.phase { margin-bottom:48px; }
+.phase-header { display:flex; align-items:center; gap:14px; margin-bottom:24px; padding-bottom:14px; border-bottom:1px solid #1e293b; }
+.phase-num { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; flex-shrink:0; font-family:'Space Mono',monospace; }
+.blue { background:#1d4ed8; color:#fff; }
+.green { background:#059669; color:#fff; }
+.purple { background:#7c3aed; color:#fff; }
+.orange { background:#d97706; color:#fff; }
+.red { background:#dc2626; color:#fff; }
+.phase-title { font-size:18px; font-weight:800; }
+.phase-sub { font-size:12px; color:#64748b; margin-top:2px; }
+.step { display:flex; gap:14px; margin-bottom:18px; }
+.step-dot { width:8px; height:8px; border-radius:50%; background:#1d4ed8; margin-top:6px; flex-shrink:0; }
+.step-content { flex:1; }
+.step-title { font-size:14px; font-weight:700; color:#e2e8f0; margin-bottom:5px; }
+.step-desc { font-size:13px; color:#94a3b8; line-height:1.7; }
+.code { background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:12px 16px; font-family:'Space Mono',monospace; font-size:12px; color:#34d399; margin-top:8px; overflow-x:auto; }
+.tip { background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.2); border-radius:8px; padding:10px 14px; font-size:12px; color:#34d399; margin-top:8px; line-height:1.6; }
+.warn { background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.2); border-radius:8px; padding:10px 14px; font-size:12px; color:#fbbf24; margin-top:8px; line-height:1.6; }
+.price-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:16px 0; }
+.price-card { background:#1e293b; border:1px solid #334155; border-radius:14px; padding:20px; }
+.price-name { font-size:13px; font-weight:700; color:#94a3b8; margin-bottom:6px; }
+.price-amt { font-size:28px; font-weight:900; color:#f8fafc; letter-spacing:-1px; }
+.price-per { font-size:11px; color:#64748b; }
+.price-feat { font-size:12px; color:#94a3b8; line-height:1.8; margin-top:10px; }
+.divider { height:1px; background:#1e293b; margin:36px 0; }
+.stack-row { display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; }
+.stack-pill { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:6px 14px; font-size:12px; color:#94a3b8; font-family:'Space Mono',monospace; }
+.stack-pill.active { background:rgba(29,78,216,0.15); border-color:rgba(29,78,216,0.4); color:#60a5fa; }
+.section-label { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:3px; color:#475569; margin-bottom:14px; }
+</style>
+</head>
+<body>
+
+<div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#1d4ed8;margin-bottom:12px;">AI RECEPTIONIST FOR PLUMBERS AND HVAC</div>
+<h1>Setup and Launch Guide</h1>
+<p class="sub">COMPLETE STEP-BY-STEP — FROM ZERO TO FIRST PAYING CLIENT</p>
+
+<!-- TECH STACK -->
+<div style="margin-bottom:40px;">
+  <div class="section-label">YOUR TECH STACK</div>
+  <div class="stack-row">
+    <div class="stack-pill active">Next.js 14</div>
+    <div class="stack-pill active">Vercel (free)</div>
+    <div class="stack-pill active">Supabase (free tier)</div>
+    <div class="stack-pill active">Claude Haiku API</div>
+    <div class="stack-pill active">Twilio (pay per use)</div>
+    <div class="stack-pill active">Stripe</div>
+    <div class="stack-pill">Cal.com (optional)</div>
+  </div>
+  <div class="tip">Monthly cost to run: ~$20-40 CAD (Anthropic API + Twilio). Your first 3 clients at $97/mo each covers everything 10x over.</div>
+</div>
+
+<!-- PHASE 1: ACCOUNTS -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num blue">1</div>
+    <div>
+      <div class="phase-title">Set Up Your Accounts</div>
+      <div class="phase-sub">All free to start. Takes 20 minutes.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-title">GitHub — create a new repo</div>
+      <div class="step-desc">Go to github.com → New repository → name it "ai-receptionist" → Private → Create. This is where your code lives.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-title">Vercel — connect your GitHub repo</div>
+      <div class="step-desc">Go to vercel.com → New Project → Import your "ai-receptionist" repo → Framework: Next.js → Deploy. Your app gets a free domain instantly.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-title">Supabase — create project and run schema</div>
+      <div class="step-desc">Go to supabase.com → New Project → name it "ai-receptionist" → pick a password → Create. Then go to SQL Editor → paste the entire schema.sql file → Click Run. Your database is ready.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-title">Anthropic — get your API key</div>
+      <div class="step-desc">Go to console.anthropic.com → API Keys → Create Key → Copy it. Add $10 credit to start. Claude Haiku costs ~$0.001 per conversation — $10 lasts thousands of calls.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-title">Twilio — get a phone number</div>
+      <div class="step-desc">Go to twilio.com → Sign up free → Verify your number → Get a Trial Number (free, Canada number available). You get $15 free credit. A Canadian local number costs ~$1.50/mo after.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2: CODE -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num green">2</div>
+    <div>
+      <div class="phase-title">Deploy the Code</div>
+      <div class="phase-sub">Upload all files to GitHub then set environment variables on Vercel.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot" style="background:#059669;"></div>
+    <div class="step-content">
+      <div class="step-title">Upload all project files to GitHub</div>
+      <div class="step-desc">Upload these folders and files to your GitHub repo in this structure:</div>
+      <div class="code">ai-receptionist/
+├── app/
+│   ├── api/
+│   │   ├── chat/route.js
+│   │   ├── leads/route.js
+│   │   ├── twilio/voice/route.js
+│   │   └── twilio/respond/route.js
+│   └── dashboard/page.jsx
+├── components/
+│   └── ChatWidget.jsx
+├── lib/
+│   ├── supabase.js
+│   └── schema.sql
+├── package.json
+└── .env.example</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot" style="background:#059669;"></div>
+    <div class="step-content">
+      <div class="step-title">Add environment variables to Vercel</div>
+      <div class="step-desc">Go to Vercel → your project → Settings → Environment Variables → add each of these:</div>
+      <div class="code">ANTHROPIC_API_KEY          = sk-ant-xxxx
+NEXT_PUBLIC_SUPABASE_URL   = https://xxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY = eyxxxx
+SUPABASE_SERVICE_ROLE_KEY  = eyxxxx
+TWILIO_ACCOUNT_SID         = ACxxxx
+TWILIO_AUTH_TOKEN          = xxxx
+TWILIO_PHONE_NUMBER        = +12895550100</div>
+      <div class="tip">Get Supabase keys from: supabase.com → your project → Settings → API</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot" style="background:#059669;"></div>
+    <div class="step-content">
+      <div class="step-title">Redeploy on Vercel</div>
+      <div class="step-desc">Go to Vercel → your project → Deployments → click the three dots on the latest deployment → Redeploy. Wait 60 seconds. Your app is live.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 3: TWILIO -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num purple">3</div>
+    <div>
+      <div class="phase-title">Connect Twilio Phone Calls</div>
+      <div class="phase-sub">Takes 10 minutes. After this phone calls go to your AI.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot" style="background:#7c3aed;"></div>
+    <div class="step-content">
+      <div class="step-title">Point your Twilio number to your app</div>
+      <div class="step-desc">Go to Twilio Console → Phone Numbers → your number → Voice Configuration → set "A call comes in" to Webhook and paste this URL:</div>
+      <div class="code">https://your-app.vercel.app/api/twilio/voice?slug=hamilton-plumbing-pro</div>
+      <div class="tip">Replace "hamilton-plumbing-pro" with your client's business slug from the Supabase database.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot" style="background:#7c3aed;"></div>
+    <div class="step-content">
+      <div class="step-title">Test with a real call</div>
+      <div class="step-desc">Call your Twilio number from your phone. The AI should answer within 2-3 seconds with the business greeting. Say "I have a leaking pipe" and watch it respond intelligently.</div>
+      <div class="warn">Twilio trial accounts can only call verified numbers. Verify your number first in Twilio → Verified Caller IDs.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 4: FIRST CLIENT -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num orange">4</div>
+    <div>
+      <div class="phase-title">Get Your First Paying Client</div>
+      <div class="phase-sub">Do this BEFORE adding Stripe. Sell it manually first.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot" style="background:#d97706;"></div>
+    <div class="step-content">
+      <div class="step-title">Add a demo business to Supabase</div>
+      <div class="step-desc">Go to Supabase → Table Editor → businesses → Insert Row. Fill in a fake plumbing business with real-sounding details. Then open the widget demo page and show it working during your sales call.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot" style="background:#d97706;"></div>
+    <div class="step-content">
+      <div class="step-title">The 5-minute demo script</div>
+      <div class="step-desc">Call a local plumber and say: "I built an AI that answers your missed calls 24/7, books appointments, and sends you the lead details. Can I show you a 5-minute demo?" If yes — show them the chat widget live and play them a recording of a phone call. Close at $97/mo.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot" style="background:#d97706;"></div>
+    <div class="step-content">
+      <div class="step-title">Onboard manually for first client</div>
+      <div class="step-desc">Add their business to Supabase by hand. Set up their Twilio number (forward their existing number or give them a new one). Embed the widget on their website. Done — collect $97 via e-transfer first month, then set up Stripe.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div style="margin-bottom:40px;">
+  <div class="section-label">PRICING TO CHARGE YOUR CLIENTS</div>
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-name">STARTER</div>
+      <div class="price-amt">$97</div>
+      <div class="price-per">CAD / month</div>
+      <div class="price-feat">Web chat widget<br>Lead capture<br>Email notifications<br>Dashboard access<br>Up to 100 leads/mo</div>
+    </div>
+    <div class="price-card" style="border-color:#1d4ed8;">
+      <div class="price-name" style="color:#60a5fa;">PRO — MOST POPULAR</div>
+      <div class="price-amt">$197</div>
+      <div class="price-per">CAD / month</div>
+      <div class="price-feat">Everything in Starter<br>24/7 phone answering<br>Appointment booking<br>SMS follow-up<br>Unlimited leads</div>
+    </div>
+    <div class="price-card">
+      <div class="price-name">ENTERPRISE</div>
+      <div class="price-amt">$397</div>
+      <div class="price-per">CAD / month</div>
+      <div class="price-feat">Multiple locations<br>Custom AI training<br>CRM integration<br>Priority support<br>Monthly reports</div>
+    </div>
+  </div>
+  <div class="tip">At 5 Pro clients: $985 CAD/mo recurring. At 10 Pro clients: $1,970 CAD/mo. This is your second income stream alongside MixCheck AI.</div>
+</div>
+
+<!-- YOUR COSTS -->
+<div style="margin-bottom:40px;">
+  <div class="section-label">YOUR COSTS PER CLIENT</div>
+  <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#0f172a;padding:10px 16px;">
+      <div style="font-size:10px;font-family:'Space Mono',monospace;color:#475569;">SERVICE</div>
+      <div style="font-size:10px;font-family:'Space Mono',monospace;color:#475569;">COST</div>
+      <div style="font-size:10px;font-family:'Space Mono',monospace;color:#475569;">NOTES</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-top:1px solid #334155;font-size:13px;color:#94a3b8;">
+      <div>Claude Haiku (AI)</div><div>~$2-5/mo</div><div>Per 1000 conversations</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-top:1px solid #334155;font-size:13px;color:#94a3b8;">
+      <div>Twilio phone number</div><div>~$1.50/mo</div><div>Canadian local number</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-top:1px solid #334155;font-size:13px;color:#94a3b8;">
+      <div>Twilio call minutes</div><div>~$5-15/mo</div><div>~$0.02/min inbound</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-top:1px solid #334155;font-size:13px;color:#94a3b8;">
+      <div>Supabase</div><div>Free</div><div>Up to 500MB database</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-top:1px solid #334155;font-size:13px;color:#94a3b8;">
+      <div>Vercel</div><div>Free</div><div>Free tier covers everything</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-top:1px solid #1d4ed8;background:rgba(29,78,216,0.08);font-size:13px;">
+      <div style="font-weight:700;color:#e2e8f0;">TOTAL COST</div>
+      <div style="font-weight:900;color:#34d399;">~$20-25/mo</div>
+      <div style="color:#64748b;">Per client</div>
+    </div>
+  </div>
+  <div class="tip" style="margin-top:12px;">At $97/mo Starter: you keep $72-77. At $197/mo Pro: you keep $172-177. 85%+ profit margin.</div>
+</div>
+
+<div class="divider"></div>
+
+<div style="text-align:center;padding:24px;background:#1e293b;border-radius:14px;">
+  <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#1d4ed8;margin-bottom:10px;">YOUR GOAL</div>
+  <div style="font-size:18px;font-weight:800;color:#f8fafc;margin-bottom:6px;">Get one verbal YES before you build anything else.</div>
+  <div style="font-size:13px;color:#64748b;">Call 5 local plumbers this week. Show the demo. Close one at $97/mo. Then build.</div>
+</div>
+
+</body>
+</html>
